@@ -134,4 +134,26 @@ test("@visual testing TC 07 - Visual Testing in instagram", async ({page})=>{
    expect(await page.screenshot()).toMatchSnapshot("playwright.png")
 
 })
+
+test('Browser context', async ({browser})=>{
+
+   const context=await browser.newContext();
+   const page=await context.newPage();
+
+   await page.goto("https://www.saucedemo.com/");
+   // enter username
+   await page.locator("//input[@id='user-name']").fill("standard_user");
+   // enter password 
+   await page.locator("//input[@name='password']").fill("secret_sauce");
+   // click on login button
+   await page.locator("//input[@type='submit']").click();
+   await page.waitForTimeout(5000);
+
+   // Pending Assertion
+   await  expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+
+
+
+
+} )
    
