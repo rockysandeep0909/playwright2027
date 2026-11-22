@@ -99,7 +99,6 @@ test("TC 05- keyboard events in playwright", async ({page})=>{
 test("TC 06- auto suggestive dropdown", async ({page})=>{
 
    await page.goto("https://www.wikipedia.org/");
-   await page.pause();
    await page.locator("//input[@id='searchInput']").fill("Playwright");
    await page.waitForTimeout(3000)
 
@@ -150,7 +149,8 @@ test('TC 08 Browser context', async ({browser})=>{
    await page.waitForTimeout(5000);
 
    // Pending Assertion
-   await  expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+   await  expect(page).toHaveURL("https://www.saucedemo.com/inventory1.html");
+   await  browserContext.close()
 
 } )
 
