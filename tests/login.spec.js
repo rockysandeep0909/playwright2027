@@ -135,7 +135,7 @@ test("@visual testing TC 07 - Visual Testing in instagram", async ({page})=>{
 
 })
 
-test('Browser context', async ({browser})=>{
+test('TC 08 Browser context', async ({browser})=>{
 
    const context=await browser.newContext();
    const page=await context.newPage();
@@ -152,8 +152,15 @@ test('Browser context', async ({browser})=>{
    // Pending Assertion
    await  expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
 
-
-
-
 } )
-   
+
+test ('TC 09 -File upload example', async ({page})=>{
+
+   await page.goto("https://the-internet.herokuapp.com/upload");
+   await page.locator("//input[@id='file-upload']").setInputFiles("testdata/concepts.txt");
+   await page.locator("//input[@id='file-submit']").click();
+   await page.waitForTimeout(5000);
+
+   await expect(page.locator("//h3")).toBeVisible();
+
+})
