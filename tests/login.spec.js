@@ -164,3 +164,45 @@ test ('TC 09 -File upload example', async ({page})=>{
    await expect(page.locator("//h3")).toBeVisible();
 
 })
+
+test('TC 10 - Handling simple alert in playwright', async ({page})=>{
+
+   await page.goto("https://the-internet.herokuapp.com/javascript_alerts");
+   
+   page.on('dialog', async dialog=>{
+     await  dialog.accept();
+    })
+
+   await page.locator("//button[text()='Click for JS Alert']").click();
+
+
+   
+})
+
+
+test('TC 11 - Handling confirm box ---dismiss in playwright', async ({page})=>{
+
+   await page.goto("https://the-internet.herokuapp.com/javascript_alerts");
+   
+
+   page.on('dialog', async dialog=>{
+     await  dialog.dismiss();
+    })
+
+   await page.locator("//button[text()='Click for JS Confirm']").click();
+
+
+})
+
+
+test('TC 12 -Handling prompt box using playwright ', async ({page})=>{
+    await page.goto('https://the-internet.herokuapp.com/javascript_alerts')
+    
+
+    page.on('dialog',async dialog=>{
+         await dialog.accept("THis is my input");
+    })
+
+    await page.locator("//button[text()='Click for JS Prompt']").click();    
+
+})
